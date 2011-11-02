@@ -1,0 +1,20 @@
+RewriteEngine On
+RewriteRule ^/principals/users/(.*)$ /proxy/$1 [PT]
+ProxyPassInterpolateEnv On
+ProxyPreserveHost On
+ProxyPass /proxy http://127.0.0.1:20000/SOGo/<%= sogo_dav_website %>/ interpolate
+ProxyPass /SOGo http://127.0.0.1:20000/SOGo interpolate
+ProxyPass / http://127.0.0.1:20000/SOGo/<%= sogo_dav_website %>/ interpolate
+
+<Proxy http://127.0.0.1:20000/SOGo>
+  RequestHeader set "x-webobjects-server-port" "443"
+  RequestHeader set "x-webobjects-server-name" "<%= sogo_dav_website %>.<%= name %>"
+  RequestHeader set "x-webobjects-server-url" "https://<%= sogo_dav_website %>.<%= name %>"
+  RequestHeader set "x-webobjects-server-protocol" "HTTP/1.0"
+  RequestHeader set "x-webobjects-remote-host" %{REMOTE_HOST}e env=REMOTE_HOST
+  AddDefaultCharset UTF-8
+  Order allow,deny
+  Allow from all
+</Proxy>
+RewriteEngine On
+RewriteRule ^/SOGo/(.*)$ /SOGo/$1 [env=REMOTE_HOST:%{REMOTE_ADDR},PT]

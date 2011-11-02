@@ -1,0 +1,22 @@
+			<%= name %> = {
+				SOGoMailDomain = <%= name %>;
+				SOGoTimeZone = <%= sogo_timezone %>;
+				SOGoUserSources = (
+					{
+						type = ldap;
+						CNFieldName = cn;
+						IDFieldName = uid;
+						UIDFieldName = uid;
+						baseDN = "ou=people,<% name.split('.').each do |domaincomponent| %>dc=<%= domaincomponent %>,<% end %>dc=root";
+						bindDN = "<%= ldap_bind_dn %>";
+						bindPassword = "<%= ldap_bind_pw %>";
+						bindFields = (mail);
+						canAuthenticate = YES;
+						hostname = localhost;
+						id = <%= name %>;
+						isAddressBook = YES;
+						port = 389;
+						displayName = "Contacts partagés";
+					}
+				);
+			};

@@ -1,0 +1,41 @@
+{
+     NSGlobalDomain = {
+     };
+     gdnc = {
+	};
+
+	sogod = {
+		SOGoAuthenticationMethod = LDAP;
+		SOGoCacheCleanupInterval = 60;
+		SOGoTimeZone = "<%= timezone %>";
+		SOGoSupportedLanguages = ("English", "French");
+		SOGoLanguage = French;
+		SOGoProfileURL			= "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_user_profile";
+		OCSFolderInfoURL		= "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_folder_info";
+		OCSEMailAlarmsFolderURL	= "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_alarms_folder";
+		OCSSessionsFolderURL	= "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_sessions_folder";
+		SOGoMailingMechanism = smtp;
+		SOGoSMTPServer = localhost;
+		SOGoIMAPServer = localhost;
+		SOGoIMAPAclConformsToIMAPExt = YES;
+		SOGoEnableEMailAlarms = YES;
+		SOGoAppointmentSendEMailNotifications = YES;
+		SOGoFoldersSendEMailNotifications = YES;
+		SOGoACLsSendEMailNotifications = YES;
+		SOGoVacationEnabled = YES;
+		SOGoForwardEnabled = YES;
+		SOGoMailMessageCheck = every_5_minutes;
+		SOGoForceIMAPLoginWithEmail = YES;
+		SOGoMailShowSubscribedFoldersOnly = YES;
+		SOGoDraftsFolderName = INBOX/Drafts;
+		SOGoSentFolderName = INBOX/Sent;
+		SOGoTrashFolderName = INBOX/Trash;
+		SOGoSieveServer = sieve://localhost:2000;
+		SOGoSieveScriptsEnabled = YES;
+		SOGoPasswordChangeEnabled = YES;
+		SOGoMailAuxiliaryUserAccountsEnabled = NO;
+		SOGoFirstDayOfWeek = 1;
+		SOGoMailReplyPlacement = above;
+		SOGoLoginModule = Mail;
+		SOGoPageTitle = <%= client %>;
+		domains = {
