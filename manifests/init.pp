@@ -48,6 +48,7 @@ class sogo (
   }
 
   cron { 'sogo-ealarms-notify':
-    command => '/usr/sbin/sogo-ealarms-notify'
+    command => '/usr/sbin/sogo-ealarms-notify',
+    user    => 'sogo',
   }
 }
