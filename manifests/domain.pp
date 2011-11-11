@@ -5,7 +5,7 @@ define sogo::domain (
   $sogo_dav_website           = 'dav',
   $sogo_website_aliases       = false,
   $sogo_website_fqdnaliases   = false,
-  $sogo_timezone              = 'Europe/Paris',
+  $sogo_timezone              = 'Europe/Paris'
   ) {
   
   concat::fragment{ "GNUstepDefaults_${name}" :

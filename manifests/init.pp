@@ -3,15 +3,15 @@ class sogo (
   $sogo_workers_count = 3
 ) {
 
-  Class["${module}::install"] -> Class["${module}::config"] ~> Class["${module}::service"]
+  Class['sogo::install'] -> Class['sogo::config'] ~> Class['sogo::service']
 
-  class { "${module}::install":
+  class { 'sogo::install':
     sogo_db_password   => $sogo_db_password
   }
-  class { "${module}::config":
+  class { 'sogo::config':
     sogo_db_password   => $sogo_db_password,
     sogo_workers_count => $sogo_workers_count
   }
-  class { "${module}::service": } 
+  class { 'sogo::service': } 
 }
 
