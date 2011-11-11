@@ -1,5 +1,5 @@
 class sogo::database (
-  $sogo_db_password = hiera('sogo_db_password')
+  $sogo_db_password
   ) {
   
   mysql::user { 'sogo':

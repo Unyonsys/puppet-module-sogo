@@ -1,12 +1,11 @@
 define sogo::domain (
-  $client                     = hiera('client'),
+  $ldap_bind_dn,
+  $ldap_bind_pw,
   $sogo_website               = 'mail',
   $sogo_dav_website           = 'dav',
   $sogo_website_aliases       = false,
   $sogo_website_fqdnaliases   = false,
   $sogo_timezone              = 'Europe/Paris',
-  $ldap_bind_dn               = hiera('ldap_bind_dn'),
-  $ldap_bind_pw               = hiera('ldap_bind_pw')
   ) {
   
   concat::fragment{ "GNUstepDefaults_${name}" :
@@ -37,7 +36,6 @@ define sogo::domain (
   }
 
   apache2::website { "${sogo_website}.${name}":
-      client              => $client,
       site_domain         => "${name}",
       confname            => "${sogo_website}",
       apache2_aliases     => $sogo_website_aliases,
@@ -50,7 +48,6 @@ define sogo::domain (
   }
 
   apache2::website { "${sogo_dav_website}.${name}":
-      client              => $client,
       site_domain         => "${name}",
       confname            => "${sogo_dav_website}",
       required_modules    => ['proxy', 'proxy_http', 'headers'],

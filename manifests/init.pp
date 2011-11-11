@@ -1,7 +1,6 @@
 class sogo (
-  $client             = hiera('owner', $::owner),
-  $sogo_workers_count = 3,
-  $sogo_db_password   = hiera('sogo_db_password')
+  $sogo_db_password,
+  $sogo_workers_count = 3
   ) {
   
   class { 'apt::repository::inverse': stage => pre }
