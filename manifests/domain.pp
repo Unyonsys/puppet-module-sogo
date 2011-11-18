@@ -5,9 +5,24 @@ define sogo::domain (
   $sogo_dav_website           = 'dav',
   $sogo_website_aliases       = false,
   $sogo_website_fqdnaliases   = false,
-  $sogo_timezone              = 'Europe/Paris'
+  $sogo_timezone              = 'Europe/Paris',
+  $sogo_dst_folder_prefix     = 'INBOX/',
+  $multi_domain_setup         = false
   ) {
-  
+
+  if $multi_domain_setup {
+    realize Concat::Fragment ['GNUstepDefaults_base_multi_domain']
+    realize Concat::Fragment ['GNUstepDefaults_end_multi_domain']
+  }
+  else {
+    # This resource will ensure Puppet fails if somebody tries to declare multiple domains
+    # in a single domain configuration mode
+    file { '/home/sogo/GNUstep/Defaults/single_domain_setup':
+      ensure  => file,
+      content => 'This is a single domain setup',
+    }
+  }
+
   concat::fragment{ "GNUstepDefaults_${name}" :
     target  => '/home/sogo/GNUstep/Defaults/GNUstepDefaults',
     order   => 20,
@@ -36,8 +51,8 @@ define sogo::domain (
   }
 
   apache2::website { "${sogo_website}.${name}":
-      site_domain         => "${name}",
-      confname            => "${sogo_website}",
+      site_domain         => $name,
+      confname            => $sogo_website,
       apache2_aliases     => $sogo_website_aliases,
       apache2_fqdnaliases => $sogo_website_fqdnaliases,
       required_modules    => ['proxy', 'proxy_http', 'headers'],
@@ -48,8 +63,8 @@ define sogo::domain (
   }
 
   apache2::website { "${sogo_dav_website}.${name}":
-      site_domain         => "${name}",
-      confname            => "${sogo_dav_website}",
+      site_domain         => $name,
+      confname            => $sogo_dav_website,
       required_modules    => ['proxy', 'proxy_http', 'headers'],
       apache2_includes    => ["/home/sogo/SOGo_dav_${name}.conf"],
       site_ips_ssl        => '*',
