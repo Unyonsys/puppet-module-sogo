@@ -6,7 +6,6 @@ class sogo::install (
   }
 
   mysql::user { 'sogo':
-    user      => sogo,
     password  => $sogo_db_password,
   }
   mysql::rights::standard { 'sogo':
