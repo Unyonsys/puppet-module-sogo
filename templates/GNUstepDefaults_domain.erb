@@ -5,6 +5,7 @@
         SOGoDraftsFolderName = <%= sogo_dst_folder_prefix%>Drafts;
         SOGoSentFolderName = <%= sogo_dst_folder_prefix%>Sent;
         SOGoTrashFolderName = <%= sogo_dst_folder_prefix%>Trash;
+        SOGoMailAuxiliaryUserAccountsEnabled = <% if sogo_mailauxiliaryuseraccountsenabled then %> YES; <% else %> NO; <% end %>
         SOGoUserSources = (
           {
             type = ldap;

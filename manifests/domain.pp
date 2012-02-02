@@ -5,6 +5,7 @@ define sogo::domain (
   $sogo_dav_website           = 'dav',
   $sogo_timezone              = 'Europe/Paris',
   $sogo_dst_folder_prefix     = 'INBOX/',
+  $sogo_mailauxiliaryuseraccountsenabled = false, 
   $multi_domain_setup         = false
   ) {
 
