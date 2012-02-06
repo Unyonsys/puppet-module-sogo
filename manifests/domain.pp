@@ -4,10 +4,11 @@ define sogo::domain (
   $sogo_website               = 'mail',
   $sogo_dav_website           = 'dav',
   $sogo_timezone              = 'Europe/Paris',
-  $sogo_dst_folder_prefix     = 'INBOX/',
+  $sogo_dst_folder_prefix     = '',
   $sogo_mailauxiliaryuseraccountsenabled = false, 
+  $sogo_imaploginfieldname    = 'mail',
   $multi_domain_setup         = false
-  ) {
+) {
 
   if $multi_domain_setup {
     realize Concat::Fragment ['GNUstepDefaults_base_multi_domain']

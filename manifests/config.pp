@@ -1,7 +1,8 @@
 class sogo::config (
   $sogo_db_password,
-  $sogo_workers_count
-  ) {
+  $sogo_workers_count,
+  $sogo_enabledomainbaseduid,
+) {
   
   concat { '/home/sogo/GNUstep/Defaults/GNUstepDefaults':
     notify  => Exec ['update-sogo-config']
