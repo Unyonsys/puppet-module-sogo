@@ -2,6 +2,9 @@ class sogo::config (
   $sogo_db_password,
   $sogo_workers_count,
   $sogo_enabledomainbaseduid,
+  $imap_server,
+  $smtp_server,
+  $sieve_server,
 ) {
   
   concat { '/home/sogo/GNUstep/Defaults/GNUstepDefaults':

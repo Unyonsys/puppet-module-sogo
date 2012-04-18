@@ -1,6 +1,7 @@
 define sogo::domain (
   $ldap_bind_dn,
   $ldap_bind_pw,
+  $ldap_hostnames             = [ 'localhost' ],
   $sogo_website               = 'mail',
   $sogo_dav_website           = 'dav',
   $sogo_timezone              = 'Europe/Paris',

@@ -15,8 +15,8 @@
     OCSEMailAlarmsFolderURL = "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_alarms_folder";
     OCSSessionsFolderURL  = "mysql://sogo:<%= sogo_db_password %>@localhost:3306/sogo/sogo_sessions_folder";
     SOGoMailingMechanism = smtp;
-    SOGoSMTPServer = localhost;
-    SOGoIMAPServer = localhost;
+    SOGoSMTPServer = <%= smtp_server %>;
+    SOGoIMAPServer = <%= imap_server %>;
     SOGoIMAPAclConformsToIMAPExt = YES;
     SOGoEnableEMailAlarms = YES;
     SOGoAppointmentSendEMailNotifications = YES;
@@ -27,7 +27,7 @@
     SOGoMailMessageCheck = every_5_minutes;
     SOGoForceIMAPLoginWithEmail = YES;
     SOGoMailShowSubscribedFoldersOnly = YES;
-    SOGoSieveServer = sieve://localhost:2000;
+    SOGoSieveServer = "<%= sieve_server %>";
     SOGoSieveScriptsEnabled = YES;
     SOGoPasswordChangeEnabled = YES;
     SOGoMailAuxiliaryUserAccountsEnabled = NO;

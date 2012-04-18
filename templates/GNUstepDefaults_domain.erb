@@ -17,7 +17,7 @@
             bindPassword = "<%= ldap_bind_pw %>";
             bindFields = (mail);
             canAuthenticate = YES;
-            hostname = localhost;
+            hostname = "<% ldap_hostnames.each do |ldap_hostname| %><%= ldap_hostname %> <% end %>";
             id = <%= name %>;
             isAddressBook = YES;
             port = 389;
